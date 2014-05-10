@@ -6,22 +6,23 @@ using System.Text;
 
 namespace EasyCronEnabler
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main()
+        private static void Main()
         {
-             if (Environment.UserInteractive)
+            if (Environment.UserInteractive)
                 new EasyCronEnabler().LoopCheck();
             else
-             {
-                 var servicesToRun = new ServiceBase[] 
-                     { 
-                         new EasyCronEnabler() 
-                     };
-                 ServiceBase.Run(servicesToRun);
-             }
+            {
+                var servicesToRun = new ServiceBase[]
+                    {
+                        new EasyCronEnabler()
+                    };
+                ServiceBase.Run(servicesToRun);
+            }
         }
+    }
 }

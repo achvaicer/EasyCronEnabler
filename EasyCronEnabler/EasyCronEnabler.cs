@@ -7,6 +7,8 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading;
+using NLog;
+using System.Configuration;
 using RestSharp;
 
 namespace EasyCronEnabler
@@ -15,7 +17,8 @@ namespace EasyCronEnabler
     {
         private static Thread _thread;
         private RestClient _client;
-        private string _token;
+        private static readonly string _token = ConfigurationManager.AppSettings["token"];
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         public EasyCronEnabler()
         {
