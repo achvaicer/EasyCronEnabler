@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EasyCronEnabler
 {
-    internal class Wrapper
+    public class Wrapper
     {
-        internal string status { get; set; }
-        internal CronJob[] cron_jobs { get; set; }
+        public string status { get; set; }
+        public CronJob[] cron_jobs { get; set; }
     }
 }

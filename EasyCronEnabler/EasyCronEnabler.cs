@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using NLog;
 using System.Configuration;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace EasyCronEnabler
@@ -24,6 +25,7 @@ namespace EasyCronEnabler
         {
             InitializeComponent();
             _client = new RestClient("https://www.easycron.com/rest/");
+            _client.AddHandler("text/html", new JsonSerializer());
         }
 
         protected override void OnStart(string[] args)
@@ -42,7 +44,7 @@ namespace EasyCronEnabler
             while (true)
             {
                 var jobs = GetCronJobs();
-                foreach (var job in jobs.Where(x => !x.status))
+                foreach (var job in jobs.Where(x => !x.Enabled))
                     Enable(job.cron_job_id);
                 Thread.Sleep(1800000);
             }

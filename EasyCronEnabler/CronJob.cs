@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasyCronEnabler
 {
-    internal class CronJob
+    public class CronJob
     {
         public int cron_job_id { get; set; }
         public string cron_job_name { get; set; }
@@ -16,8 +16,10 @@ namespace EasyCronEnabler
         public int engine_occupied { get; set; }
         public int log_output_length { get; set; }
         public int email_me { get; set; }
-        public bool status { get; set; }
+        public int status { get; set; }
         public DateTime created { get; set; }
         public DateTime updated { get; set; }
+
+        public bool Enabled { get { return status == 1; } }
     }
 }
