@@ -45,7 +45,13 @@ namespace EasyCronEnabler
             {
                 var jobs = GetCronJobs();
                 foreach (var job in jobs.Where(x => !x.Enabled))
-                    Enable(job.cron_job_id);
+                {
+                    var enabled = Enable(job.cron_job_id);
+                    if (enabled)
+                        _logger.Info("Cron job {0} enabled", job.cron_job_name);
+                    else
+                        _logger.Error("Error when enabling cron job {0}", job.cron_job_name);
+                }
                 Thread.Sleep(1800000);
             }
         }
