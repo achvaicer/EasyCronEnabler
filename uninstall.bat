@@ -1,0 +1,1 @@
+call EasyCronEnabler.exe /uninstall
